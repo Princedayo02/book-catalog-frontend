@@ -1,12 +1,11 @@
 "use client";
 import { axiosConfig } from "@/axiosConfig";
 import React from "react";
-import Form from "react";
 import { useState, useEffect } from "react";
-import { IAuthor, IBooks, IGenre } from "@/types";
+import { IAuthor, IGenre } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "react-toastify";
 
@@ -32,7 +31,7 @@ function AddBook() {
 
 	const getAuthor = async () => {
 		try {
-			const { data, status } = await axiosConfig.get("/author");
+			const { data } = await axiosConfig.get("/author");
 			setAuthor(data.data);
 		} catch (error) {
 			console.log(error);
@@ -40,7 +39,7 @@ function AddBook() {
 	};
 	const getGenre = async () => {
 		try {
-			const { data, status } = await axiosConfig.get("/genre");
+			const { data } = await axiosConfig.get("/genre");
 			setGenre(data.data);
 		} catch (error) {
 			console.log(error);

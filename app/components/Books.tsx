@@ -2,14 +2,11 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { axiosConfig } from "@/axiosConfig";
 import { useEffect, useState } from "react";
-import { table } from "console";
-import Link from "next/link";
 import { toast } from "react-toastify";
-import Form from "react";
 import { IAuthor, IBooks, IGenre } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 
 function Books() {
@@ -22,7 +19,7 @@ function Books() {
 
 	const getBooks = async () => {
 		try {
-			const { data, status } = await axiosConfig.get("/book");
+			const { data } = await axiosConfig.get("/book");
 			setBooks(data);
 		} catch (error) {
 			console.log(error);
@@ -120,7 +117,7 @@ const AddBookModal = ({ setModalOpen }: IModal) => {
 
 	const getAuthor = async () => {
 		try {
-			const { data, status } = await axiosConfig.get("/author");
+			const { data } = await axiosConfig.get("/author");
 			setAuthor(data.data);
 		} catch (error) {
 			console.log(error);
@@ -128,7 +125,7 @@ const AddBookModal = ({ setModalOpen }: IModal) => {
 	};
 	const getGenre = async () => {
 		try {
-			const { data, status } = await axiosConfig.get("/genre");
+			const { data } = await axiosConfig.get("/genre");
 			setGenre(data.data);
 		} catch (error) {
 			console.log(error);
