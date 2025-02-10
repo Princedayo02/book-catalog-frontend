@@ -13,6 +13,7 @@ export interface IBooks {
 	name: string;
 	authour: string;
 	isbn: string;
+	proofRead: boolean;
 	author: IAuthor;
 	genre: IGenre;
 }

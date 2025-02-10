@@ -18,7 +18,7 @@ function Books() {
 
 	useEffect(() => {
 		getBooks();
-	}, []);
+	}, [modalOpen]);
 
 	const getBooks = async () => {
 		try {
@@ -38,18 +38,19 @@ function Books() {
 		console.log(id, "id from delete book");
 	};
 	return (
-		<div className="flex flex-col gap-10 mt-4 px-14 md:text-base lg:text-lg text-xs border border-green-700">
+		<div className="flex flex-col gap-10 mt-4 px-14 md:text-base mx-auto lg:text-lg text-xs">
 			<div className="flex items-center justify-center ">
 				<Button onClick={() => setModalOpen(true)} className="bg-blue-600 hover:bg-blue-400">
 					Add Book
 				</Button>
 			</div>
-			<table className=" w-[300px] border border-red-600">
+			<table className=" w-[300px]  lg:w-[950px] mx-auto">
 				<thead>
 					<tr>
-						<th>Book Title</th>
-						<th>Author</th>
-						<th>Genre</th>
+						<th>BOOK TITLE</th>
+						<th>AUTHOR</th>
+						<th>GENRE</th>
+						<th>PROOFREAD</th>
 						<th>ISBN</th>
 						<th>ACTION</th>
 					</tr>
@@ -62,6 +63,7 @@ function Books() {
 								<td>{book.name}</td>
 								<td>{book.author.name + "," + " " + book.author.age}</td>
 								<td>{book.genre.name}</td>
+								<td>{book.proofRead ? "True" : "False"}</td>
 								<td>{book.isbn}</td>
 								<td className="flex items-center justify-center">
 									<Button
@@ -144,16 +146,17 @@ const AddBookModal = ({ setModalOpen }: IModal) => {
 			setProofRead(false);
 			setIsbn("");
 			setYear("");
+			setModalOpen(false);
 		} else {
 			toast.error("Error creating book");
 		}
 	};
 	return (
 		<div className="absolute inset-0 bg-black bg-opacity-70">
-			<button onClick={() => setModalOpen(false)} className="flex items-center justify-end ml-auto text-white p-8">
-				X
-			</button>
 			<div className="m-10 bg-white opacity-100 z-40">
+				<button onClick={() => setModalOpen(false)} className="flex items-center justify-end ml-auto text-black p-8">
+					X
+				</button>
 				<h1 className="text-3xl text-center bold-lg py-8 font-bold">ADD BOOK TO THE LIBRARY</h1>
 				<form
 					action=""
